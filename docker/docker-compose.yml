@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  mininet:
+    container_name: 'mininet'
+    build: ./mininet
+    image: joaogsleite/mininet
+    tty: true
+    privileged: true
+    environment:
+      - DISPLAY=host.docker.internal:0  
+    volumes:
+      - ../mininet:/root/mininet
+      - /lib/modules:/lib/modules
+      - /tmp/.X11-unix:/tmp/.X11-unix
+
+  floodlight:
+    container_name: 'floodlight'
+    build: ./floodlight
+    image: joaogsleite/floodlight
+    tty: true
+    volumes:
+      - ../floodlight:/root/floodlight
